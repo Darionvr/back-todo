@@ -30,13 +30,13 @@ const getTodos = async () => {
         return [];
     }
 };
-app.get('/api/', async (req, res) => {
+app.get('/', async (req, res) => {
     const todos = await getTodos();
     res.json(todos)
 });
 
 
-app.get('/api/:id', async (req, res) => {
+app.get('/:id', async (req, res) => {
 
     try {
         const id = req.params.id;
@@ -53,7 +53,7 @@ app.get('/api/:id', async (req, res) => {
 })
 
 
-app.post('/api/', async (req, res) => {
+app.post('/', async (req, res) => {
     try {
         const { title } = req.body;
         if (!title) {
@@ -73,7 +73,7 @@ app.post('/api/', async (req, res) => {
 });
 
 
-app.put('/api/:id', async (req, res) => {
+app.put('/:id', async (req, res) => {
     try {
         const id = req.params.id;
 
@@ -100,7 +100,7 @@ app.put('/api/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/clear-completed', async (req, res) => {
+app.delete('/clear-completed', async (req, res) => {
     try {
       let todos = await getTodos();
       todos = todos.filter((todo) => !todo.done);
@@ -113,7 +113,7 @@ app.delete('/api/clear-completed', async (req, res) => {
     }
   });
 
-app.delete('/api/:id', async (req, res) => {
+app.delete('/:id', async (req, res) => {
     try {
         const id = Number(req.params.id);
         let todos = await getTodos();
