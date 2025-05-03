@@ -14,6 +14,12 @@ const __dirname = path.dirname(__filename);
 const TODOS_FILE_PATH = path.resolve(__dirname, "./assets/todos.json");
 
 
+const port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", () => {
+    console.log(`Servidor corriendo en el puerto ${port}`);
+});
+
+
 const getTodos = async () => {
     try {
         const fsResponse = await readFile(TODOS_FILE_PATH, "utf-8");
@@ -29,7 +35,6 @@ app.get('/api/', async (req, res) => {
     res.json(todos)
 });
 
-app.listen(3000, console.log('Listening on port 3000'))
 
 app.get('/api/:id', async (req, res) => {
 
